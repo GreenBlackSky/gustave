@@ -1,16 +1,16 @@
 class Note {
   String text;
   int id;
+
+  Note(this.id, this.text);
 }
 
 class DataStorage {
   String name;
-  int activeNoteIndex = -1;
   List notes = [];
 
   void clear() {
     this.name = "";
-    this.activeNoteIndex = -1;
     this.notes.clear();
   }
 }

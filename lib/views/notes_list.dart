@@ -16,7 +16,7 @@ class _NotesListViewState extends State<NotesListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(title: Text("Notes")),
         body: buildForm(NotesList(), 0.3),
         drawer: buildDrawer(context),
         floatingActionButton: FloatingActionButton(
@@ -30,14 +30,11 @@ class NotesList extends ElementsList {
   final elements = storage.notes;
 
   @override
-  Widget buildListElement(BuildContext context, var noteJSON, int index) {
-    void Function() onEdit = editNoteDialogMethod(context, noteJSON);
-    void Function() onRemove;
-    if (storage.notes.length > 1) {
-      onRemove = removeNoteDialogMethod(context, noteJSON);
-    }
+  Widget buildListElement(BuildContext context, var note, int index) {
+    void Function() onEdit = editNoteDialogMethod(context, note);
+    void Function() onRemove = removeNoteDialogMethod(context, note);
     return ElevatedButton(
-      child: buildListElementBase(Text(noteJSON['text']), onEdit, onRemove),
+      child: buildListElementBase(Text(note.text), onEdit, onRemove),
       onPressed: () {},
     );
   }

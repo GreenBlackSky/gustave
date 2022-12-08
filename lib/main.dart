@@ -17,7 +17,7 @@ class App extends StatelessWidget {
       routes: {
         '/login': (context) => LogInScreen(),
         '/signup': (context) => SignUpScreen(),
-        '/accounts_view': (context) => NotesListView(),
+        '/notes': (context) => NotesListView(),
         '/settings': (context) => SettingsScreen(),
         '/loading': (context) => LoadingScreen()
       },

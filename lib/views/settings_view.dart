@@ -37,9 +37,15 @@ class _SettingsState extends State<SettingsWidget> {
           arguments: LoadingArgs(LoadingType.EDIT_USER,
               name: this._controllers["name"].value.text,
               password: this._controllers["old_pass"].value.text,
-              newPassword: this._controllers["new_pass"].value.text,
-              endpoint: "/settings"));
+              newPassword: this._controllers["new_pass"].value.text));
     }
+  }
+
+  String _validateFirstPassword(String value) {
+    if (value.isEmpty) {
+      return "Please enter password";
+    }
+    return null;
   }
 
   String _validateSecondPassword(String value) {
@@ -58,7 +64,8 @@ class _SettingsState extends State<SettingsWidget> {
           buildTextField(this._controllers["name"], "Name"),
           Text("Change password:",
               style: Theme.of(context).textTheme.headline6),
-          buildTextField(this._controllers["old_pass"], "Current password",
+          buildValidatedTextField(this._controllers["old_pass"],
+              "Current password", this._validateFirstPassword,
               obscure: true),
           buildTextField(this._controllers["new_pass"], "New password",
               obscure: true),

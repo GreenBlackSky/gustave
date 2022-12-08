@@ -1,3 +1,4 @@
+import 'package:coin_client/storage.dart';
 import 'package:flutter/material.dart';
 
 import 'common/common.dart';
@@ -20,7 +21,7 @@ Future<String> Function() baseNoteDialog(BuildContext context, String title,
                   onPressed: () {
                     Navigator.pushNamed(context, "/loading",
                         arguments: LoadingArgs(action,
-                            name: controller.value.text, id: id));
+                            text: controller.value.text, id: id));
                   },
                 ),
                 TextButton(
@@ -44,16 +45,16 @@ void Function() addNewNoteDialogMethod(BuildContext context) {
   );
 }
 
-void Function() editNoteDialogMethod(BuildContext context, var noteJSON) {
+void Function() editNoteDialogMethod(BuildContext context, Note note) {
   return baseNoteDialog(
       context, "Edit note", "Text here", "Edit", LoadingType.EDIT_NOTE,
-      id: noteJSON['id'], text: noteJSON['name']);
+      id: note.id, text: note.text);
 }
 
-void Function() removeNoteDialogMethod(BuildContext context, var noteJSON) {
+void Function() removeNoteDialogMethod(BuildContext context, Note note) {
   return confirmDialogMethod(
       context, "Are you sure you want to delete note?", "Delete note", () {
     Navigator.pushNamed(context, "/loading",
-        arguments: LoadingArgs(LoadingType.DELETE_NOTE, id: noteJSON['id']));
+        arguments: LoadingArgs(LoadingType.DELETE_NOTE, id: note.id));
   });
 }

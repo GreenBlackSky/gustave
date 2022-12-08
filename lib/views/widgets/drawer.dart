@@ -6,15 +6,8 @@ import 'package:coin_client/storage.dart';
 import 'common/confirmation_dialog.dart';
 
 Map<String, String> views = {
-  "Graph view": "/event_graph",
-  "List view": "/event_list",
-  "Month view": "/month_view",
-  "Pie chart": "/pie_chart_view",
-  "Categories": "/category_view",
-  "Templates": "/templates_view",
-  "Accounts": "/accounts_view",
+  "Notes": "/notes",
   "Settings": "/settings",
-  // "Logout": "/event_graph",
 };
 
 Widget buildDrawer(BuildContext context) {

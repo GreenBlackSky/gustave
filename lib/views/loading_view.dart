@@ -53,8 +53,8 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
   }
 
   Future<void> loadDataFromServer() async {
-    String endpoint = "/event_graph";
-    String errorEndpoint = "/event_graph";
+    String endpoint = "/notes";
+    String errorEndpoint = "/notes";
     try {
       switch (widget.args.type) {
         case LoadingType.REGISTER:
@@ -68,7 +68,7 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
               widget.args.name, widget.args.password);
           break;
         case LoadingType.EDIT_USER:
-          endpoint = widget.args.endpoint;
+          endpoint = "/settings";
           errorEndpoint = "/settings";
           await editUser(
               widget.args.name, widget.args.password, widget.args.newPassword);

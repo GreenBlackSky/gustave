@@ -27,7 +27,7 @@ class Session {
   }
 
   Future<http.Response> get(String url) async {
-    http.Response response = await http.put(host + url, headers: this._headers);
+    http.Response response = await http.get(host + url, headers: this._headers);
     if (response.statusCode == 200) {
       setToken(response);
     }

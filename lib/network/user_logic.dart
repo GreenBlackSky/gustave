@@ -3,7 +3,7 @@ import 'responses/user_responses.dart';
 import 'notes_logic.dart';
 
 Future<void> syncUser() async {
-  requestUserData().then(processAuthorizationResponse);
+  await requestUserData().then(processAuthorizationResponse);
 }
 
 Future<void> loadDataFromServerOnRegister(String name, String password) async {
