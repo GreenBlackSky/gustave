@@ -1,4 +1,4 @@
-package com.example.coin_client
+package com.example.gustave
 
 import io.flutter.embedding.android.FlutterActivity
 

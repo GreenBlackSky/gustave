@@ -5,6 +5,7 @@ class Note {
   Note(this.id, this.text);
 }
 
+// TODO separate Notes into child class
 class DataStorage {
   String name;
   List notes = [];

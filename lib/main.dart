@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'views/login_view.dart';
-import 'views/signup_view.dart';
-import 'views/notes_list.dart';
-import 'views/settings_view.dart';
-import 'views/loading_view.dart';
+import 'gustave/views/loading_view.dart';
+import 'gustave/views/settings_view.dart';
+import 'gustave/views/signup_view.dart';
+import 'gustave/views/login_view.dart';
+import 'notes_list.dart';
 
 void main() => runApp(App());
 
@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "COIN",
+      title: "Notes app",
       initialRoute: '/login',
       routes: {
         '/login': (context) => LogInScreen(),

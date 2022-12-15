@@ -1,8 +1,7 @@
 import 'package:http/http.dart' as http;
 
-import 'utils.dart';
-
-import 'package:coin_client/storage.dart';
+import 'package:gustave/gustave/network/utils.dart';
+import 'package:gustave/gustave/storage.dart';
 
 void processNotesResponse(http.Response response) {
   var responseBody = getResponseBody(response);

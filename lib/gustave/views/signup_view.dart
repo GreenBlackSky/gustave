@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/common/common.dart';
-import 'widgets/common/text_fields.dart';
+import '../widgets/common/common_widget.dart';
+import '../common.dart';
+import '../widgets/common/text_fields.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(leading: new Container(), title: Text("COIN")),
+        // TODO get name from args
+        appBar: AppBar(leading: new Container(), title: Text("Notes app")),
         backgroundColor: Colors.grey[200],
         body: buildForm(SignUpForm(), 0.3));
   }
@@ -26,6 +28,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   void _signup() {
     if (_formKey.currentState.validate()) {
+      // TODO replace with new call
       Navigator.pushNamed(context, "/loading",
           arguments: LoadingArgs(LoadingType.REGISTER,
               name: this._nameController.value.text,

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/loading_animation.dart';
-import 'widgets/common/common.dart';
+import '../widgets/loading_animation.dart';
+import '../widgets/common/common_widget.dart';
+import '../common.dart';
 
-import 'package:coin_client/network/notes_logic.dart';
-import 'package:coin_client/network/user_logic.dart';
+import '../network/user/user_logic.dart';
+import '../../notes_logic.dart';
 
 class LoadingScreen extends StatelessWidget {
   @override
@@ -53,6 +54,7 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
   }
 
   Future<void> loadDataFromServer() async {
+    // TODO rework so this thing would work without LoadingType.REGISTER
     String endpoint = "/notes";
     String errorEndpoint = "/notes";
     try {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:coin_client/common.dart';
+import '../../common.dart';
 
 class DateField extends StatefulWidget {
   DateField(this.selectedDate);

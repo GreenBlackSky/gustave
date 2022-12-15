@@ -1,6 +1,8 @@
-import 'requests/user_requests.dart';
-import 'responses/user_responses.dart';
-import 'notes_logic.dart';
+import 'package:gustave/notes_logic.dart';
+// TODO remove
+
+import 'user_requests.dart';
+import 'user_responses.dart';
 
 Future<void> syncUser() async {
   await requestUserData().then(processAuthorizationResponse);

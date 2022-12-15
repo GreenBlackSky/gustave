@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:coin_client/network/requests/session.dart';
-import 'package:coin_client/storage.dart';
+import '../network/session.dart';
+import '../storage.dart';
 
 import 'common/confirmation_dialog.dart';
 
 Map<String, String> views = {
+  // TODO Dynamicly fetch views
   "Notes": "/notes",
   "Settings": "/settings",
 };

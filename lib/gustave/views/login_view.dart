@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/common/common.dart';
-import 'widgets/common/text_fields.dart';
+import '../widgets/common/common_widget.dart';
+import '../common.dart';
+import '../widgets/common/text_fields.dart';
 
 class LogInScreen extends StatelessWidget {
   @override
@@ -25,6 +26,7 @@ class _LogInFormState extends State<LogInForm> {
 
   void _login() {
     if (_formKey.currentState.validate()) {
+      // TODO replace with new call
       Navigator.pushNamed(context, "/loading",
           arguments: LoadingArgs(LoadingType.LOGIN,
               name: this._nameController.value.text,

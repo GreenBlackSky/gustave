@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/common/common.dart';
-import 'widgets/common/text_fields.dart';
-import 'widgets/drawer.dart';
-
-import 'package:coin_client/storage.dart';
+import '../widgets/common/common_widget.dart';
+import '../common.dart';
+import '../widgets/common/text_fields.dart';
+import '../widgets/drawer.dart';
+import '../storage.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -33,6 +33,7 @@ class _SettingsState extends State<SettingsWidget> {
 
   void _sendRequest() {
     if (this._formKey.currentState.validate()) {
+      // TODO replace with new call
       Navigator.pushNamed(context, "/loading",
           arguments: LoadingArgs(LoadingType.EDIT_USER,
               name: this._controllers["name"].value.text,

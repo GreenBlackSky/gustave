@@ -1,6 +1,7 @@
-import 'requests/notes_requests.dart';
-import 'responses/notes_responses.dart';
-import 'responses/utils.dart';
+import 'package:gustave/gustave/network/utils.dart';
+
+import 'notes_requests.dart';
+import 'notes_responses.dart';
 
 Future<void> syncNotes() async {
   await requestNotes().then(processNotesResponse);

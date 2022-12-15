@@ -1,9 +1,9 @@
-import 'package:coin_client/storage.dart';
 import 'package:flutter/material.dart';
 
-import 'common/common.dart';
-import 'common/text_fields.dart';
-import 'common/confirmation_dialog.dart';
+import 'package:gustave/gustave/storage.dart';
+import 'package:gustave/gustave/common.dart';
+import 'package:gustave/gustave/widgets/common/text_fields.dart';
+import 'package:gustave/gustave/widgets/common/confirmation_dialog.dart';
 
 Future<String> Function() baseNoteDialog(BuildContext context, String title,
     String hint, String buttonText, LoadingType action,
@@ -19,6 +19,7 @@ Future<String> Function() baseNoteDialog(BuildContext context, String title,
                 TextButton(
                   child: Text(buttonText),
                   onPressed: () {
+                    // TODO replace with new call
                     Navigator.pushNamed(context, "/loading",
                         arguments: LoadingArgs(action,
                             text: controller.value.text, id: id));
@@ -54,6 +55,7 @@ void Function() editNoteDialogMethod(BuildContext context, Note note) {
 void Function() removeNoteDialogMethod(BuildContext context, Note note) {
   return confirmDialogMethod(
       context, "Are you sure you want to delete note?", "Delete note", () {
+    // TODO replace with new call
     Navigator.pushNamed(context, "/loading",
         arguments: LoadingArgs(LoadingType.DELETE_NOTE, id: note.id));
   });

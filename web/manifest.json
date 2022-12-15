@@ -1,6 +1,6 @@
 {
-    "name": "coin_client",
-    "short_name": "coin_client",
+    "name": "gustave",
+    "short_name": "gustave",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
