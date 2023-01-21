@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/common/common_widget.dart';
-import '../common.dart';
-import '../widgets/common/text_fields.dart';
-import '../widgets/drawer.dart';
-import '../storage.dart';
+import 'user_network_logic.dart';
+import 'network/server_caller.dart';
+import 'widgets/common_widget.dart';
+import 'widgets/drawer.dart';
+import 'storage.dart';
+import 'widgets/text_fields.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -29,16 +30,16 @@ class _SettingsState extends State<SettingsWidget> {
     "new_pass": TextEditingController(),
     "new_pass2": TextEditingController(),
   };
+  final _serverCaller = ServerCallerWrapper(editUser, "/settings", "/settings");
   final _formKey = GlobalKey<FormState>();
 
   void _sendRequest() {
     if (this._formKey.currentState.validate()) {
-      // TODO replace with new call
-      Navigator.pushNamed(context, "/loading",
-          arguments: LoadingArgs(LoadingType.EDIT_USER,
-              name: this._controllers["name"].value.text,
-              password: this._controllers["old_pass"].value.text,
-              newPassword: this._controllers["new_pass"].value.text));
+      _serverCaller.callServer(context, [
+        this._controllers["name"].value.text,
+        this._controllers["old_pass"].value.text,
+        this._controllers["new_pass"].value.text
+      ]);
     }
   }
 

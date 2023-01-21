@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 
-import '../utils.dart';
-import '../../storage.dart';
+import 'network/utils.dart';
+import 'storage.dart';
 
 void processAuthorizationResponse(http.Response response) {
   var responseBody = getResponseBody(response);

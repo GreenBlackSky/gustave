@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// TODO better animation
 class LoadingAnimation extends AnimatedWidget {
   LoadingAnimation({Key key, Animation<double> animation})
       : super(key: key, listenable: animation);

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/common/common_widget.dart';
-import '../common.dart';
-import '../widgets/common/text_fields.dart';
+import 'network/server_caller.dart';
+import 'widgets/common_widget.dart';
+import 'widgets/text_fields.dart';
+import 'user_network_logic.dart';
 
 class LogInScreen extends StatelessWidget {
   @override
@@ -22,15 +23,16 @@ class LogInForm extends StatefulWidget {
 class _LogInFormState extends State<LogInForm> {
   final _nameController = TextEditingController();
   final _passController = TextEditingController();
+  final _serverCaller =
+      ServerCallerWrapper(loadDataFromServerOnRegister, "/main", "/signup");
   final _formKey = GlobalKey<FormState>();
 
   void _login() {
     if (_formKey.currentState.validate()) {
-      // TODO replace with new call
-      Navigator.pushNamed(context, "/loading",
-          arguments: LoadingArgs(LoadingType.LOGIN,
-              name: this._nameController.value.text,
-              password: this._passController.value.text));
+      _serverCaller.callServer(context, [
+        this._nameController.value.text,
+        this._passController.value.text,
+      ]);
     }
   }
 

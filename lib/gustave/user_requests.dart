@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../session.dart';
+import 'network/session.dart';
 
 Future<http.Response> requestRegistration(String name, String password) async {
   return session.post(

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:gustave/gustave/network/session.dart';
+import 'gustave/network/session.dart';
 
 Future<http.Response> requestNotes() async {
   return session.get('notes');

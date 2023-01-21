@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gustave/gustave/network/server_caller.dart';
 
-import '../widgets/common/common_widget.dart';
-import '../common.dart';
-import '../widgets/common/text_fields.dart';
+import 'user_network_logic.dart';
+import 'widgets/common_widget.dart';
+import 'widgets/text_fields.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
@@ -24,15 +25,14 @@ class _SignUpFormState extends State<SignUpForm> {
   final _nameController = TextEditingController();
   final _passController1 = TextEditingController();
   final _passController2 = TextEditingController();
+  final _serverCaller =
+      ServerCallerWrapper(loadDataFromServerOnLogin, "/main", "/login");
   final _formKey = GlobalKey<FormState>();
 
   void _signup() {
     if (_formKey.currentState.validate()) {
-      // TODO replace with new call
-      Navigator.pushNamed(context, "/loading",
-          arguments: LoadingArgs(LoadingType.REGISTER,
-              name: this._nameController.value.text,
-              password: this._passController1.value.text));
+      _serverCaller.callServer(context,
+          [this._nameController.value.text, this._passController1.value.text]);
     }
   }
 

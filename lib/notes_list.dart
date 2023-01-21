@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:gustave/note_dialog.dart';
-import 'package:gustave/gustave/widgets/common/common_widget.dart';
-import 'package:gustave/gustave/widgets/common/element_list.dart';
-import 'package:gustave/gustave/widgets/drawer.dart';
+import 'gustave/storage.dart';
+import 'gustave/widgets/common_widget.dart';
+import 'gustave/widgets/drawer.dart';
+import 'gustave/widgets/element_list.dart';
 
-import 'package:gustave/gustave/storage.dart';
+import 'note_dialog.dart';
 
 class NotesListView extends StatefulWidget {
   @override
