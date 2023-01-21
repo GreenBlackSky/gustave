@@ -20,7 +20,7 @@ class _NotesListViewState extends State<NotesListView> {
         body: buildForm(NotesList(), 0.3),
         drawer: buildDrawer(context),
         floatingActionButton: FloatingActionButton(
-            onPressed: addNewNoteDialogMethod(context),
+            onPressed: AddNoteDialog().show(context),
             child: Icon(Icons.add),
             tooltip: "Add new note"));
   }
@@ -31,8 +31,8 @@ class NotesList extends ElementsList {
 
   @override
   Widget buildListElement(BuildContext context, var note, int index) {
-    void Function() onEdit = editNoteDialogMethod(context, note);
-    void Function() onRemove = removeNoteDialogMethod(context, note);
+    void Function() onEdit = EditNoteDialog().showDialog(context, note);
+    void Function() onRemove = RemoveNodeDialog().showDialog(context, note);
     return ElevatedButton(
       child: buildListElementBase(Text(note.text), onEdit, onRemove),
       onPressed: () {},
