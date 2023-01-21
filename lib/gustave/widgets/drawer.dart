@@ -4,6 +4,22 @@ import '../network/session.dart';
 import '../storage.dart';
 import 'confirmation_dialog.dart';
 
+class LogOutDialog extends ConfirmationDialogue {
+  final String title = "Are you sure, you want to log out?";
+  final String buttonText = "Log out";
+
+  LogOutDialog(BuildContext context) : super(context);
+
+  @override
+  void onPressed() {
+    // TODO use animation
+    session.post('logout').catchError((_) {});
+    session.clearSession();
+    storage.clear();
+    Navigator.of(context).pushNamed('/login');
+  }
+}
+
 Map<String, String> views = {
   // TODO Dynamicly fetch views
   "Notes": "/main",
@@ -21,23 +37,11 @@ Widget buildDrawer(BuildContext context) {
     );
     tiles.add(tile);
   }
-  tiles.add(ListTile(
-      title: Text("Logout"),
-      onTap: confirmDialogMethod(context, "Are you sure, you want to log out?",
-          "Log out", logoutMethod(context))));
+  tiles.add(ListTile(title: Text("Logout"), onTap: LogOutDialog(context).show));
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
       children: tiles,
     ),
   );
-}
-
-void Function() logoutMethod(BuildContext context) {
-  return () {
-    session.post('logout').catchError((_) {});
-    session.clearSession();
-    storage.clear();
-    Navigator.of(context).pushNamed('/login');
-  };
 }

@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-Future<String> Function() confirmDialogMethod(BuildContext context,
-    String title, String buttonText, void Function() onPressed) {
-  return () {
+abstract class ConfirmationDialogue {
+  final BuildContext context;
+  String title;
+  String buttonText;
+
+  ConfirmationDialogue(this.context);
+
+  void onPressed();
+
+  Future<String> show() {
     return showDialog<String>(
         context: context,
         builder: (BuildContext context) {
@@ -22,5 +29,5 @@ Future<String> Function() confirmDialogMethod(BuildContext context,
             ],
           );
         });
-  };
+  }
 }
