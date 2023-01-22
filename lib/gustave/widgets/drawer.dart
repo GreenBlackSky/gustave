@@ -26,6 +26,7 @@ Map<String, String> views = {
   "Settings": "/settings",
 };
 
+//TODO Inherit custom drawer from Drawer
 Widget buildDrawer(BuildContext context) {
   List<Widget> tiles = [];
   for (MapEntry<String, String> e in views.entries) {

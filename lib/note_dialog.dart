@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gustave/gustave/network/server_caller.dart';
 
-import 'package:gustave/gustave/storage.dart';
-import 'package:gustave/notes_logic.dart';
-
+import 'gustave/network/server_caller.dart';
 import 'gustave/widgets/confirmation_dialog.dart';
 import 'gustave/widgets/text_fields.dart';
+
+import 'notes_logic.dart';
+import 'note.dart';
 
 class NoteDialog {
   BuildContext context;

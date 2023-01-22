@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-class ElementsList extends StatefulWidget {
-  ElementsList({Key key}) : super(key: key);
+// TODO move elements to state
+abstract class ElementsList extends StatefulWidget {
   List elements;
+
+  ElementsList({Key key}) : super(key: key);
 
   @override
   State<ElementsList> createState() => _ElementsListState();
 
-  Widget buildListElement(BuildContext context, var element, int index) {}
+  Widget buildListElement(BuildContext context, var element, int index);
 }
 
 class _ElementsListState extends State<ElementsList> {

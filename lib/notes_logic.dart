@@ -1,4 +1,4 @@
-import 'package:gustave/gustave/network/utils.dart';
+import 'gustave/network/utils.dart';
 
 import 'notes_requests.dart';
 import 'notes_responses.dart';

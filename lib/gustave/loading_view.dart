@@ -53,16 +53,6 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
   Future<void> loadDataFromServer() async {
     try {
       await widget.args.method(widget.args.args);
-      //   case LoadingType.CREATE_NOTE:
-      //     await createNote(widget.args.text);
-      //     break;
-      //   case LoadingType.EDIT_NOTE:
-      //     await editNote(widget.args.id, widget.args.text);
-      //     break;
-      //   case LoadingType.DELETE_NOTE:
-      //     await deleteNote(widget.args.id);
-      //     break;
-      // }
     } catch (e) {
       displayError(this.context, e.toString());
       Navigator.of(this.context)

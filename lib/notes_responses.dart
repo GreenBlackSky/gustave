@@ -3,10 +3,12 @@ import 'package:http/http.dart' as http;
 import 'gustave/network/utils.dart';
 import 'gustave/storage.dart';
 
+import 'note.dart';
+
 void processNotesResponse(http.Response response) {
   var responseBody = getResponseBody(response);
-  storage.notes.clear();
+  storage.stuff.clear();
   for (Map<String, dynamic> noteJson in responseBody['notes']) {
-    storage.notes.add(Note(noteJson['id'], noteJson['text']));
+    storage.stuff.add(Note(noteJson['id'], noteJson['text']));
   }
 }

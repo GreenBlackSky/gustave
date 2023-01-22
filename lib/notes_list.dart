@@ -27,7 +27,7 @@ class _NotesListViewState extends State<NotesListView> {
 }
 
 class NotesList extends ElementsList {
-  final elements = storage.notes;
+  final elements = storage.stuff;
 
   @override
   Widget buildListElement(BuildContext context, var note, int index) {

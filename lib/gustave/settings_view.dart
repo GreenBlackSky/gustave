@@ -74,9 +74,7 @@ class _SettingsState extends State<SettingsWidget> {
           buildValidatedTextField(this._controllers["new_pass2"],
               "Repeat new password", this._validateSecondPassword,
               obscure: true),
-          buildButton("Apply", () {
-            this._sendRequest();
-          })
+          buildButton("Apply", this._sendRequest)
         ]));
   }
 }
