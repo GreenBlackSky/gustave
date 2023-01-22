@@ -23,6 +23,7 @@ class SettingsWidget extends StatefulWidget {
   _SettingsState createState() => _SettingsState();
 }
 
+// TODO dark theme
 class _SettingsState extends State<SettingsWidget> {
   final _controllers = {
     "name": TextEditingController(text: storage.name),

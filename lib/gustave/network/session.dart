@@ -1,6 +1,7 @@
 import "dart:convert";
 import 'package:http/http.dart' as http;
 
+//TODO init session with parameters
 class Session {
   // String host = 'http://api_service:5004/';
   String host = 'http://localhost:5003/';
@@ -19,6 +20,9 @@ class Session {
   }
 
   void setToken(http.Response response) {
+    if (response.statusCode != 200) {
+      return;
+    }
     var responseData = jsonDecode(response.body);
     String jwt = responseData['access_token'];
     if (jwt != null) {
@@ -28,9 +32,7 @@ class Session {
 
   Future<http.Response> get(String url) async {
     http.Response response = await http.get(host + url, headers: this._headers);
-    if (response.statusCode == 200) {
-      setToken(response);
-    }
+    setToken(response);
     return response;
   }
 
@@ -40,9 +42,7 @@ class Session {
     }
     http.Response response =
         await http.put(host + url, body: data, headers: this._headers);
-    if (response.statusCode == 200) {
-      setToken(response);
-    }
+    setToken(response);
     return response;
   }
 
@@ -52,18 +52,14 @@ class Session {
     }
     http.Response response =
         await http.post(host + url, body: data, headers: this._headers);
-    if (response.statusCode == 200) {
-      setToken(response);
-    }
+    setToken(response);
     return response;
   }
 
   Future<http.Response> delete(String url) async {
     http.Response response =
         await http.delete(host + url, headers: this._headers);
-    if (response.statusCode == 200) {
-      setToken(response);
-    }
+    setToken(response);
     return response;
   }
 }

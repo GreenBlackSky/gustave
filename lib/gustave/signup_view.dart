@@ -5,6 +5,8 @@ import 'user_network_logic.dart';
 import 'widgets/common_widget.dart';
 import 'widgets/text_fields.dart';
 
+// TODO google and facebook integration
+// TODO Store token in device/browser
 class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
