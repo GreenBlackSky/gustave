@@ -12,7 +12,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Settings")),
-      drawer: buildDrawer(context),
+      drawer: AppDrawer(context),
       body: buildForm(SettingsWidget(), 0.3),
     );
   }
@@ -24,6 +24,8 @@ class SettingsWidget extends StatefulWidget {
 }
 
 // TODO dark theme
+// TODO common view with automatic drawer
+// TODO button to force hide/show drawer
 class _SettingsState extends State<SettingsWidget> {
   final _controllers = {
     "name": TextEditingController(text: storage.name),

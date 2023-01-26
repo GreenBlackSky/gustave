@@ -26,23 +26,25 @@ Map<String, String> views = {
   "Settings": "/settings",
 };
 
-//TODO Inherit custom drawer from Drawer
-Widget buildDrawer(BuildContext context) {
-  List<Widget> tiles = [];
-  for (MapEntry<String, String> e in views.entries) {
-    Widget tile = ListTile(
-      title: Text(e.key),
-      onTap: () {
-        Navigator.pushNamed(context, e.value);
-      },
-    );
-    tiles.add(tile);
+class AppDrawer extends Drawer {
+  AppDrawer(BuildContext context)
+      : super(
+            child: ListView(
+                padding: EdgeInsets.zero, children: getTiles(context)));
+
+  static List<Widget> getTiles(BuildContext context) {
+    List<Widget> tiles = [];
+    for (MapEntry<String, String> e in views.entries) {
+      Widget tile = ListTile(
+        title: Text(e.key),
+        onTap: () {
+          Navigator.pushNamed(context, e.value);
+        },
+      );
+      tiles.add(tile);
+    }
+    tiles.add(
+        ListTile(title: Text("Logout"), onTap: LogOutDialog(context).show));
+    return tiles;
   }
-  tiles.add(ListTile(title: Text("Logout"), onTap: LogOutDialog(context).show));
-  return Drawer(
-    child: ListView(
-      padding: EdgeInsets.zero,
-      children: tiles,
-    ),
-  );
 }
