@@ -2,9 +2,12 @@ import "dart:convert";
 import 'package:http/http.dart' as http;
 
 //TODO init session with parameters
+// TODO rework http
 class Session {
   // String host = 'http://api_service:5004/';
-  String host = 'http://localhost:5003/';
+  // String host = 'http://localhost:5003/';
+  String host = 'localhost';
+  int port = 5003;
   Map<String, String> _baseHeaders = {
     'Content-Type': 'application/json; charset=UTF-8',
     'Access-Control-Allow-Origin': '*'
@@ -31,7 +34,8 @@ class Session {
   }
 
   Future<http.Response> get(String url) async {
-    http.Response response = await http.get(host + url, headers: this._headers);
+    http.Response response = await http
+        .get(Uri(host: host, port: port, path: url), headers: this._headers);
     setToken(response);
     return response;
   }
@@ -40,8 +44,10 @@ class Session {
     if (data == null) {
       data = jsonEncode(<String, String>{});
     }
-    http.Response response =
-        await http.put(host + url, body: data, headers: this._headers);
+    http.Response response = await http.put(
+        Uri(host: host, port: port, path: url),
+        body: data,
+        headers: this._headers);
     setToken(response);
     return response;
   }
@@ -50,15 +56,17 @@ class Session {
     if (data == null) {
       data = jsonEncode(<String, String>{});
     }
-    http.Response response =
-        await http.post(host + url, body: data, headers: this._headers);
+    http.Response response = await http.post(
+        Uri(host: host, port: port, path: url),
+        body: data,
+        headers: this._headers);
     setToken(response);
     return response;
   }
 
   Future<http.Response> delete(String url) async {
-    http.Response response =
-        await http.delete(host + url, headers: this._headers);
+    http.Response response = await http
+        .delete(Uri(host: host, port: port, path: url), headers: this._headers);
     setToken(response);
     return response;
   }
