@@ -26,7 +26,7 @@ class Session {
     var responseData = jsonDecode(response.body);
     String? jwt = responseData['access_token'];
     if (jwt != null) {
-      this._headers!['Authorization'] = "Bearer " + jwt;
+      this._headers['Authorization'] = "Bearer " + jwt;
     }
   }
 

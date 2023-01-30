@@ -17,7 +17,7 @@ class _NotesListViewState extends State<NotesListView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("Notes")),
-        body: buildForm(NotesList(), 0.3),
+        body: CommonForm(NotesList()),
         drawer: AppDrawer(context),
         floatingActionButton: FloatingActionButton(
             onPressed: AddNoteDialog(context).show,

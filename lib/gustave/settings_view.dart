@@ -5,7 +5,6 @@ import 'network/server_caller.dart';
 import 'widgets/common_widget.dart';
 import 'widgets/drawer.dart';
 import 'storage.dart';
-import 'widgets/text_fields.dart';
 
 // TODO common view with automatic drawer
 // TODO button to force hide/show drawer
@@ -15,7 +14,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("Settings")),
       drawer: AppDrawer(context),
-      body: buildForm(SettingsWidget(), 0.3),
+      body: CommonForm(SettingsWidget()),
     );
   }
 }
@@ -64,17 +63,23 @@ class _SettingsState extends State<SettingsWidget> {
         key: this._formKey,
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           Text("Change name:", style: Theme.of(context).textTheme.titleLarge),
-          buildTextField(nameController, "Name"),
-          Text("Change password:",
-              style: Theme.of(context).textTheme.titleLarge),
-          buildValidatedTextField(oldPassController, "Current password",
-              this._validateFirstPassword,
-              obscure: true),
-          buildTextField(newPassController, "New password", obscure: true),
-          buildValidatedTextField(newPass2Controller, "Repeat new password",
-              this._validateSecondPassword,
-              obscure: true),
-          buildButton("Apply", this._sendRequest)
+          BasicTextField("Name", nameController),
+          Text(
+            "Change password:",
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          ObscuredValidatedTextField(
+            "Current password",
+            oldPassController,
+            this._validateFirstPassword,
+          ),
+          ObscuredTextField("New password", newPassController),
+          ObscuredValidatedTextField(
+            "Repeat new password",
+            newPass2Controller,
+            this._validateSecondPassword,
+          ),
+          Button("Apply", this._sendRequest)
         ]));
   }
 }

@@ -10,14 +10,14 @@ class LoadingArgs {
 }
 
 class ServerCallerWrapper {
-  Function _method;
-  final String endpoint;
-  final String errorEndpoint;
+  final Function _method;
+  final String _endpoint;
+  final String _errorEndpoint;
 
-  ServerCallerWrapper(this._method, this.endpoint, this.errorEndpoint);
+  ServerCallerWrapper(this._method, this._endpoint, this._errorEndpoint);
 
   void callServer(BuildContext context, List<dynamic> args) {
     Navigator.pushNamed(context, "/loading",
-        arguments: LoadingArgs(_method, args, endpoint, errorEndpoint));
+        arguments: LoadingArgs(_method, args, _endpoint, _errorEndpoint));
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'network/server_caller.dart';
 import 'widgets/common_widget.dart';
-import 'widgets/text_fields.dart';
 import 'user_network_logic.dart';
 
 class LogInScreen extends StatelessWidget {
@@ -11,7 +10,7 @@ class LogInScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(leading: new Container(), title: Text("COIN")),
         backgroundColor: Colors.grey[200],
-        body: buildForm(LogInForm(), 0.3));
+        body: CommonForm(LogInForm()));
   }
 }
 
@@ -43,15 +42,21 @@ class _LogInFormState extends State<LogInForm> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text('Log in', style: Theme.of(context).textTheme.headline4),
-          buildTextField(this._nameController, "Name"),
-          buildTextField(this._passController, "Password", obscure: true),
-          ButtonBar(alignment: MainAxisAlignment.spaceEvenly, children: [
-            buildButton("Log in", _login),
-            buildButton("Don't have an account", () {
-              Navigator.of(context).pushNamed('/signup');
-            })
-          ])
+          Text('Log in', style: Theme.of(context).textTheme.headlineMedium),
+          BasicTextField("Name", this._nameController),
+          ObscuredTextField("Password", this._passController),
+          ButtonBar(
+            alignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Button("Log in", _login),
+              Button(
+                "Don't have an account",
+                () {
+                  Navigator.of(context).pushNamed('/signup');
+                },
+              )
+            ],
+          )
         ],
       ),
     );

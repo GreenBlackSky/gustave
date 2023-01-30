@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'gustave/network/server_caller.dart';
 import 'gustave/widgets/confirmation_dialog.dart';
-import 'gustave/widgets/text_fields.dart';
+import 'gustave/widgets/common_widget.dart';
 
 import 'notes_logic.dart';
 import 'note.dart';
@@ -28,7 +28,7 @@ abstract class NoteDialog {
         context: context,
         builder: (BuildContext context) => AlertDialog(
               title: Text(title),
-              content: buildTextField(controller, hint),
+              content: BasicTextField(hint, controller),
               actions: <Widget>[
                 TextButton(
                   child: Text(buttonText),

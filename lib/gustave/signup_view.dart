@@ -3,7 +3,6 @@ import 'package:gustave/gustave/network/server_caller.dart';
 
 import 'user_network_logic.dart';
 import 'widgets/common_widget.dart';
-import 'widgets/text_fields.dart';
 
 // TODO google and facebook integration
 // TODO Store token in device/browser
@@ -14,7 +13,7 @@ class SignUpScreen extends StatelessWidget {
         // TODO get name from args
         appBar: AppBar(leading: new Container(), title: Text("Notes app")),
         backgroundColor: Colors.grey[200],
-        body: buildForm(SignUpForm(), 0.3));
+        body: CommonForm(SignUpForm()));
   }
 }
 
@@ -33,8 +32,10 @@ class _SignUpFormState extends State<SignUpForm> {
 
   void _signup() {
     if (_formKey.currentState!.validate()) {
-      _serverCaller.callServer(context,
-          [this._nameController.value.text, this._passController1.value.text]);
+      _serverCaller.callServer(
+        context,
+        [this._nameController.value.text, this._passController1.value.text],
+      );
     }
   }
 
@@ -55,17 +56,22 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text('Sign up', style: Theme.of(context).textTheme.headline4),
-          buildTextField(this._nameController, "Name"),
-          buildTextField(this._passController1, "Password", obscure: true),
-          buildValidatedTextField(
-              this._passController2, "Repeat password", _validateSecondPassword,
-              obscure: true),
+          Text('Sign up', style: Theme.of(context).textTheme.headlineMedium),
+          BasicTextField("Name", this._nameController),
+          ObscuredTextField("Password", this._passController1),
+          ObscuredValidatedTextField(
+            "Repeat password",
+            this._passController2,
+            _validateSecondPassword,
+          ),
           ButtonBar(alignment: MainAxisAlignment.spaceEvenly, children: [
-            buildButton("Sign up", _signup),
-            buildButton("Already have an account", () {
-              Navigator.of(context).pushReplacementNamed('/login');
-            })
+            Button("Sign up", _signup),
+            Button(
+              "Already have an account",
+              () {
+                Navigator.of(context).pushReplacementNamed('/login');
+              },
+            ),
           ])
         ],
       ),
