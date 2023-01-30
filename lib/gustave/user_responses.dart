@@ -5,5 +5,5 @@ import 'storage.dart';
 
 void processAuthorizationResponse(http.Response response) {
   var responseBody = getResponseBody(response);
-  storage.name = responseBody['user']['name'];
+  storage.userName = responseBody['user']['name'];
 }

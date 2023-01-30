@@ -1,6 +1,11 @@
 import "dart:convert";
 import 'package:http/http.dart' as http;
 
+Map<String, String> baseHeaders = {
+  'Content-Type': 'application/json; charset=UTF-8',
+  'Access-Control-Allow-Origin': '*'
+};
+
 //TODO init session with parameters
 // TODO rework http
 class Session {
@@ -8,18 +13,10 @@ class Session {
   // String host = 'http://localhost:5003/';
   String host = 'localhost';
   int port = 5003;
-  Map<String, String> _baseHeaders = {
-    'Content-Type': 'application/json; charset=UTF-8',
-    'Access-Control-Allow-Origin': '*'
-  };
-  Map<String, String> _headers;
-
-  Session() {
-    this.clearSession();
-  }
+  Map<String, String> _headers = new Map<String, String>.from(baseHeaders);
 
   void clearSession() {
-    this._headers = new Map<String, String>.from(_baseHeaders);
+    this._headers = new Map<String, String>.from(baseHeaders);
   }
 
   void setToken(http.Response response) {
@@ -27,9 +24,9 @@ class Session {
       return;
     }
     var responseData = jsonDecode(response.body);
-    String jwt = responseData['access_token'];
+    String? jwt = responseData['access_token'];
     if (jwt != null) {
-      this._headers['Authorization'] = "Bearer " + jwt;
+      this._headers!['Authorization'] = "Bearer " + jwt;
     }
   }
 

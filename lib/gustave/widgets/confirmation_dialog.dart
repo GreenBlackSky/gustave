@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 abstract class ConfirmationDialogue {
   final BuildContext context;
-  String title;
-  String buttonText;
+  abstract final String title;
+  abstract final String buttonText;
 
   ConfirmationDialogue(this.context);
 
   void onPressed();
 
-  Future<String> show() {
+  Future<String?> show() {
     return showDialog<String>(
         context: context,
         builder: (BuildContext context) {

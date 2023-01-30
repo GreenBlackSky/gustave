@@ -7,6 +7,8 @@ import 'widgets/drawer.dart';
 import 'storage.dart';
 import 'widgets/text_fields.dart';
 
+// TODO common view with automatic drawer
+// TODO button to force hide/show drawer
 class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,37 +26,33 @@ class SettingsWidget extends StatefulWidget {
 }
 
 // TODO dark theme
-// TODO common view with automatic drawer
-// TODO button to force hide/show drawer
 class _SettingsState extends State<SettingsWidget> {
-  final _controllers = {
-    "name": TextEditingController(text: storage.name),
-    "old_pass": TextEditingController(),
-    "new_pass": TextEditingController(),
-    "new_pass2": TextEditingController(),
-  };
+  final nameController = TextEditingController(text: storage.userName);
+  final oldPassController = TextEditingController();
+  final newPassController = TextEditingController();
+  final newPass2Controller = TextEditingController();
   final _serverCaller = ServerCallerWrapper(editUser, "/settings", "/settings");
   final _formKey = GlobalKey<FormState>();
 
   void _sendRequest() {
-    if (this._formKey.currentState.validate()) {
+    if (this._formKey.currentState!.validate()) {
       _serverCaller.callServer(context, [
-        this._controllers["name"].value.text,
-        this._controllers["old_pass"].value.text,
-        this._controllers["new_pass"].value.text
+        nameController.value.text,
+        oldPassController.value.text,
+        newPassController.value.text
       ]);
     }
   }
 
-  String _validateFirstPassword(String value) {
-    if (value.isEmpty) {
+  String? _validateFirstPassword(String? value) {
+    if (value == null || value.isEmpty) {
       return "Please enter password";
     }
     return null;
   }
 
-  String _validateSecondPassword(String value) {
-    if (value != this._controllers["new_pass"].value.text) {
+  String? _validateSecondPassword(String? value) {
+    if (value != newPassController.value.text) {
       return "Passwords must be identical";
     }
     return null;
@@ -65,17 +63,16 @@ class _SettingsState extends State<SettingsWidget> {
     return Form(
         key: this._formKey,
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-          Text("Change name:", style: Theme.of(context).textTheme.headline6),
-          buildTextField(this._controllers["name"], "Name"),
+          Text("Change name:", style: Theme.of(context).textTheme.titleLarge),
+          buildTextField(nameController, "Name"),
           Text("Change password:",
-              style: Theme.of(context).textTheme.headline6),
-          buildValidatedTextField(this._controllers["old_pass"],
-              "Current password", this._validateFirstPassword,
+              style: Theme.of(context).textTheme.titleLarge),
+          buildValidatedTextField(oldPassController, "Current password",
+              this._validateFirstPassword,
               obscure: true),
-          buildTextField(this._controllers["new_pass"], "New password",
-              obscure: true),
-          buildValidatedTextField(this._controllers["new_pass2"],
-              "Repeat new password", this._validateSecondPassword,
+          buildTextField(newPassController, "New password", obscure: true),
+          buildValidatedTextField(newPass2Controller, "Repeat new password",
+              this._validateSecondPassword,
               obscure: true),
           buildButton("Apply", this._sendRequest)
         ]));

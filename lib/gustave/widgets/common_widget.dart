@@ -15,14 +15,14 @@ Widget buildButton(String text, Function callback) {
       style: ButtonStyle(
         foregroundColor:
             MaterialStateColor.resolveWith((Set<MaterialState> states) {
-          return states.contains(MaterialState.disabled) ? null : Colors.white;
+          return Colors.white;
         }),
         backgroundColor:
             MaterialStateColor.resolveWith((Set<MaterialState> states) {
-          return states.contains(MaterialState.disabled) ? null : Colors.blue;
+          return Colors.blue;
         }),
       ),
-      onPressed: callback,
+      onPressed: callback as void Function()?,
       child: Text(text),
     ),
   );

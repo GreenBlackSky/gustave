@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// TODO convert to class
 Widget _buildTextFieldImpl(TextEditingController controller, String hint,
-    Function validator, bool obscure, List formatters) {
+    String? Function(String?) validator, bool obscure, List formatters) {
   return Padding(
     padding: EdgeInsets.all(8.0),
     child: TextFormField(
-      inputFormatters: formatters,
+      inputFormatters: formatters as List<TextInputFormatter>?,
       controller: controller,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
@@ -29,17 +30,9 @@ Widget buildTextField(TextEditingController controller, String hint,
       controller, hint, (value) => null, obscure, <TextInputFormatter>[]);
 }
 
-Widget buildValidatedTextField(
-    TextEditingController controller, String hint, Function validator,
+Widget buildValidatedTextField(TextEditingController controller, String hint,
+    String? Function(String?) validator,
     {bool obscure = false}) {
-  if (validator == null) {
-    validator = (value) {
-      if (value.isEmpty) {
-        return "Please enter $hint";
-      }
-      return null;
-    };
-  }
   return _buildTextFieldImpl(
       controller, hint, validator, obscure, <TextInputFormatter>[]);
 }

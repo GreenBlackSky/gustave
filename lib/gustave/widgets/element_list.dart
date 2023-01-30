@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 // TODO move elements to state
 abstract class ElementsList extends StatefulWidget {
-  List elements;
+  abstract final List elements;
 
-  ElementsList({Key key}) : super(key: key);
+  ElementsList({Key? key}) : super(key: key);
 
   @override
   State<ElementsList> createState() => _ElementsListState();
@@ -33,13 +33,15 @@ Widget buildListElementBase(Widget text, Function onEdit, Function onRemove,
   List<Widget> actions = [];
   if (onEdit != null) {
     actions.add(IconButton(
-        icon: Icon(Icons.edit), color: Colors.black, onPressed: onEdit));
+        icon: Icon(Icons.edit),
+        color: Colors.black,
+        onPressed: onEdit as void Function()?));
   }
   if (onRemove != null) {
     actions.add(IconButton(
       icon: Icon(Icons.delete),
       color: Colors.black,
-      onPressed: onRemove,
+      onPressed: onRemove as void Function()?,
     ));
   }
   return Container(

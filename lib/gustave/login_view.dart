@@ -24,11 +24,11 @@ class _LogInFormState extends State<LogInForm> {
   final _nameController = TextEditingController();
   final _passController = TextEditingController();
   final _serverCaller =
-      ServerCallerWrapper(loadDataFromServerOnRegister, "/main", "/signup");
+      ServerCallerWrapper(loadDataFromServerOnRegister, "/main", "/login");
   final _formKey = GlobalKey<FormState>();
 
   void _login() {
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState!.validate()) {
       _serverCaller.callServer(context, [
         this._nameController.value.text,
         this._passController.value.text,

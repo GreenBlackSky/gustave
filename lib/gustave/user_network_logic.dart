@@ -6,17 +6,24 @@ Future<void> syncUser() async {
   await requestUserData().then(processAuthorizationResponse);
 }
 
-Future<void> loadDataFromServerOnRegister(String name, String password) async {
+Future<void> loadDataFromServerOnRegister(List<dynamic> args) async {
+  String name = args[0];
+  String password = args[1];
   await requestRegistration(name, password).then(processAuthorizationResponse);
   await storage.sync();
 }
 
-Future<void> loadDataFromServerOnLogin(String name, String password) async {
+Future<void> loadDataFromServerOnLogin(List<dynamic> args) async {
+  String name = args[0];
+  String password = args[1];
   await requestLogin(name, password).then(processAuthorizationResponse);
   await storage.sync();
 }
 
-Future<void> editUser(String name, String password, String newPassword) async {
+Future<void> editUser(List<dynamic> args) async {
+  String name = args[0];
+  String password = args[1];
+  String newPassword = args[2];
   await requestEditUser(name, password, newPassword);
   await syncUser();
 }

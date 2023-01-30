@@ -28,18 +28,18 @@ class _SignUpFormState extends State<SignUpForm> {
   final _passController1 = TextEditingController();
   final _passController2 = TextEditingController();
   final _serverCaller =
-      ServerCallerWrapper(loadDataFromServerOnLogin, "/main", "/login");
+      ServerCallerWrapper(loadDataFromServerOnLogin, "/main", "/signup");
   final _formKey = GlobalKey<FormState>();
 
   void _signup() {
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState!.validate()) {
       _serverCaller.callServer(context,
           [this._nameController.value.text, this._passController1.value.text]);
     }
   }
 
-  String _validateSecondPassword(String value) {
-    if (value.isEmpty) {
+  String? _validateSecondPassword(String? value) {
+    if (value == null || value.isEmpty) {
       return "Please enter password";
     }
     if (value != this._passController1.value.text) {

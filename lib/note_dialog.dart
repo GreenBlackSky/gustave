@@ -7,14 +7,14 @@ import 'gustave/widgets/text_fields.dart';
 import 'notes_logic.dart';
 import 'note.dart';
 
-class NoteDialog {
+abstract class NoteDialog {
   BuildContext context;
-  String title;
-  String hint;
-  String buttonText;
-  Function action;
-  int id;
-  String text;
+  abstract final String title;
+  abstract final String hint;
+  abstract final String buttonText;
+  abstract final Function action;
+  int? id;
+  String? text;
 
   NoteDialog(
     this.context, {
@@ -22,7 +22,7 @@ class NoteDialog {
     this.text = "",
   });
 
-  Future<String> show() {
+  Future<String?> show() {
     var controller = TextEditingController(text: text);
     return showDialog<String>(
         context: context,
@@ -49,19 +49,19 @@ class NoteDialog {
 }
 
 class AddNoteDialog extends NoteDialog {
-  final title = "Create new note";
-  final hint = "Text here";
-  final buttonText = "Create";
-  final action = createNote;
+  final String title = "Create new note";
+  final String hint = "Text here";
+  final String buttonText = "Create";
+  final Function action = createNote;
 
   AddNoteDialog(BuildContext context) : super(context);
 }
 
 class EditNoteDialog extends NoteDialog {
-  final title = "Edit note";
-  final hint = "Text here";
-  final buttonText = "Edit";
-  final action = editNote;
+  final String title = "Edit note";
+  final String hint = "Text here";
+  final String buttonText = "Edit";
+  final Function action = editNote;
 
   EditNoteDialog(BuildContext context, Note note)
       : super(context, id: note.id, text: note.text);

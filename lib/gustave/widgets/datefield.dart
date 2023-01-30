@@ -26,7 +26,7 @@ class _DateFieldState extends State<DateField> {
   }
 
   void _selectDate(BuildContext context) async {
-    final DateTime selected = await showDatePicker(
+    final DateTime? selected = await showDatePicker(
       context: context,
       initialDate: widget.selectedDate,
       firstDate: DateTime(2010),

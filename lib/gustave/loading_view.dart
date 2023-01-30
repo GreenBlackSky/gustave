@@ -8,7 +8,7 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LoadingArgs args =
-        ModalRoute.of(context).settings.arguments as LoadingArgs;
+        ModalRoute.of(context)!.settings.arguments as LoadingArgs;
 
     return Scaffold(body: buildForm(Loader(args: args), 1.0));
   }
@@ -16,7 +16,7 @@ class LoadingScreen extends StatelessWidget {
 
 class Loader extends StatefulWidget {
   final LoadingArgs args;
-  Loader({Key key, @required this.args}) : super(key: key);
+  Loader({Key? key, required this.args}) : super(key: key);
 
   @override
   _LoaderState createState() {
@@ -25,13 +25,13 @@ class Loader extends StatefulWidget {
 }
 
 class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
-  Animation<double> animation;
-  AnimationController controller;
+  late Animation<double> animation;
+  late AnimationController controller;
 
   @override
   void initState() {
     super.initState();
-    this.loadDataFromServer();
+    Future.delayed(Duration.zero, this.loadDataFromServer);
     this.controller =
         AnimationController(duration: const Duration(seconds: 1), vsync: this);
     this.animation =
