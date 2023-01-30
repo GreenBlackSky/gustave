@@ -33,11 +33,10 @@ class _LoaderState extends State<Loader> with SingleTickerProviderStateMixin {
     super.initState();
     Future.delayed(Duration.zero, this.loadDataFromServer);
     this.controller =
-        AnimationController(duration: const Duration(seconds: 1), vsync: this);
-    this.animation =
-        Tween<double>(begin: 10, end: 100).animate(this.controller);
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    this.animation = Tween<double>(begin: 0, end: 360).animate(this.controller);
     this.controller.forward();
-    this.controller.repeat(reverse: true);
+    this.controller.repeat();
   }
 
   @override

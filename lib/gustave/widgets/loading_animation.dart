@@ -1,6 +1,6 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
-// TODO better animation
 class LoadingAnimation extends AnimatedWidget {
   LoadingAnimation({Key? key, required Animation<double> animation})
       : super(key: key, listenable: animation);
@@ -20,17 +20,36 @@ class LoadingAnimation extends AnimatedWidget {
 }
 
 class LoadingAnimationPainter extends CustomPainter {
-  final double size;
-  LoadingAnimationPainter(this.size);
+  final double angle;
+  LoadingAnimationPainter(this.angle);
+
   @override
   void paint(Canvas canvas, Size size) {
-    var paint = Paint()
-      ..color = Colors.yellow
-      ..strokeWidth = 5
-      ..style = PaintingStyle.fill
-      ..strokeCap = StrokeCap.round;
     Offset center = Offset(size.width / 2, size.height / 2);
-    canvas.drawCircle(center, this.size, paint);
+    var trianglePaint = Paint()
+      ..color = Colors.green
+      ..style = PaintingStyle.fill;
+    var circlePaint = Paint()
+      ..color = Colors.black
+      ..style = PaintingStyle.fill;
+    canvas.drawCircle(center, size.width / 3, circlePaint);
+    canvas.drawPath(
+      getTrianglePath(center, size.width / 4, this.angle),
+      trianglePaint,
+    );
+  }
+
+  Path getTrianglePath(Offset center, double R, double angle) {
+    var angleRad = angle / 180 * pi;
+
+    var path = Path()
+      ..moveTo(R * sin(angleRad), R * cos(angleRad))
+      ..lineTo(R * sin(2 * pi / 3 + angleRad), R * cos(2 * pi / 3 + angleRad))
+      ..lineTo(R * sin(4 * pi / 3 + angleRad), R * cos(4 * pi / 3 + angleRad))
+      ..close();
+    path = path.shift(center);
+
+    return path;
   }
 
   @override
