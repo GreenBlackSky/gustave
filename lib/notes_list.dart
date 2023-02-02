@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'gustave/storage.dart';
 import 'gustave/widgets/common_widget.dart';
-import 'gustave/widgets/drawer.dart';
+import 'gustave/widgets/common_view.dart';
 import 'gustave/widgets/element_list.dart';
 
 import 'note_dialog.dart';
@@ -15,14 +15,14 @@ class NotesListView extends StatefulWidget {
 class _NotesListViewState extends State<NotesListView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text("Notes")),
-        body: CommonForm(NotesList()),
-        drawer: AppDrawer(context),
-        floatingActionButton: FloatingActionButton(
-            onPressed: AddNoteDialog(context).show,
-            child: Icon(Icons.add),
-            tooltip: "Add new note"));
+    return CommonView(
+      "Notes",
+      CommonForm(NotesList()),
+      floatingActionButton: FloatingActionButton(
+          onPressed: AddNoteDialog(context).show,
+          child: Icon(Icons.add),
+          tooltip: "Add new note"),
+    );
   }
 }
 

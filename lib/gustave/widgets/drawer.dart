@@ -27,10 +27,14 @@ Map<String, String> views = {
 };
 
 class AppDrawer extends Drawer {
-  AppDrawer(BuildContext context)
-      : super(
-            child: ListView(
-                padding: EdgeInsets.zero, children: getTiles(context)));
+  AppDrawer(BuildContext context) : super(child: getBody(context));
+
+  static Widget getBody(BuildContext context) {
+    return ListView(
+      padding: EdgeInsets.zero,
+      children: getTiles(context),
+    );
+  }
 
   static List<Widget> getTiles(BuildContext context) {
     List<Widget> tiles = [];

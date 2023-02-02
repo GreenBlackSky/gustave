@@ -27,7 +27,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final _passController1 = TextEditingController();
   final _passController2 = TextEditingController();
   final _serverCaller =
-      ServerCallerWrapper(loadDataFromServerOnLogin, "/main", "/signup");
+      ServerCallerWrapper(loadDataFromServerOnRegister, "/main", "/signup");
   final _formKey = GlobalKey<FormState>();
 
   void _signup() {

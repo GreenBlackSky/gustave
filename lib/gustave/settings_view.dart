@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 import 'user_network_logic.dart';
 import 'network/server_caller.dart';
 import 'widgets/common_widget.dart';
-import 'widgets/drawer.dart';
+import 'widgets/common_view.dart';
 import 'storage.dart';
 
-// TODO common view with automatic drawer
-// TODO button to force hide/show drawer
 class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Settings")),
-      drawer: AppDrawer(context),
-      body: CommonForm(SettingsWidget()),
+    return CommonView(
+      "Settings",
+      CommonForm(SettingsWidget()),
     );
   }
 }

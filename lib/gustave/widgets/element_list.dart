@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TODO move elements to state
 abstract class ElementsList extends StatefulWidget {
   abstract final List elements;
 
@@ -28,7 +27,7 @@ class _ElementsListState extends State<ElementsList> {
   }
 }
 
-Widget buildListElementBase(Widget text, Function onEdit, Function onRemove,
+Widget buildListElementBase(Widget text, Function? onEdit, Function? onRemove,
     {Color color = Colors.blue}) {
   List<Widget> actions = [];
   if (onEdit != null) {
@@ -51,7 +50,7 @@ Widget buildListElementBase(Widget text, Function onEdit, Function onRemove,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Padding(padding: EdgeInsets.all(8.0), child: text),
-      Padding(padding: EdgeInsets.all(8.0), child: Row(children: actions))
+      Padding(padding: EdgeInsets.all(8.0), child: Row(children: actions)),
     ])),
     alignment: Alignment.centerRight,
   );

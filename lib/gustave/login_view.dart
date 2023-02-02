@@ -23,7 +23,7 @@ class _LogInFormState extends State<LogInForm> {
   final _nameController = TextEditingController();
   final _passController = TextEditingController();
   final _serverCaller =
-      ServerCallerWrapper(loadDataFromServerOnRegister, "/main", "/login");
+      ServerCallerWrapper(loadDataFromServerOnLogin, "/main", "/login");
   final _formKey = GlobalKey<FormState>();
 
   void _login() {
