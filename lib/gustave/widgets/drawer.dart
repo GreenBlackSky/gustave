@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../network/session.dart';
 import '../storage.dart';
+import '../app_data.dart';
 import 'confirmation_dialog.dart';
 
 class LogOutDialog extends ConfirmationDialogue {
@@ -20,12 +21,6 @@ class LogOutDialog extends ConfirmationDialogue {
   }
 }
 
-Map<String, String> views = {
-  // TODO Dynamicly fetch views
-  "Notes": "/main",
-  "Settings": "/settings",
-};
-
 class AppDrawer extends Drawer {
   AppDrawer(BuildContext context) : super(child: getBody(context));
 
@@ -38,7 +33,7 @@ class AppDrawer extends Drawer {
 
   static List<Widget> getTiles(BuildContext context) {
     List<Widget> tiles = [];
-    for (MapEntry<String, String> e in views.entries) {
+    for (MapEntry<String, String> e in AppData().views.entries) {
       Widget tile = ListTile(
         title: Text(e.key),
         onTap: () {

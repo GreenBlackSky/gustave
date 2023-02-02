@@ -6,14 +6,16 @@ Map<String, String> baseHeaders = {
   'Access-Control-Allow-Origin': '*'
 };
 
-//TODO init session with parameters
 // TODO rework http
 class Session {
-  // String host = 'http://api_service:5004/';
-  // String host = 'http://localhost:5003/';
-  String host = 'localhost';
-  int port = 5003;
+  late String host;
+  late int port;
   Map<String, String> _headers = new Map<String, String>.from(baseHeaders);
+
+  void init(String host, int port) {
+    this.host = host;
+    this.port = port;
+  }
 
   void clearSession() {
     this._headers = new Map<String, String>.from(baseHeaders);

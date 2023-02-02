@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gustave/gustave/network/server_caller.dart';
 
-import 'user_network_logic.dart';
+import 'app_data.dart';
+import 'user_network.dart';
+import 'network/server_caller.dart';
 import 'widgets/common_widget.dart';
 
 // TODO google and facebook integration
@@ -10,8 +11,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // TODO get name from args
-        appBar: AppBar(leading: new Container(), title: Text("Notes app")),
+        appBar: AppBar(leading: new Container(), title: Text(appData.appName)),
         backgroundColor: Colors.grey[200],
         body: CommonForm(SignUpForm()));
   }

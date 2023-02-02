@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'user_network_logic.dart';
+import 'user_network.dart';
 import 'network/server_caller.dart';
 import 'widgets/common_widget.dart';
 import 'widgets/common_view.dart';

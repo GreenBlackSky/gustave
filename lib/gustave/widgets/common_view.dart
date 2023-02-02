@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'drawer.dart';
 
+// TODO nice hiding drawer animation
 class CommonView extends StatefulWidget {
   final String title;
   final Widget body;

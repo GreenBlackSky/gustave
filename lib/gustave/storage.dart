@@ -1,24 +1,36 @@
 class Storagable {}
 
-// TODO multidimentional stuff
 class DataStorage {
   String? userName;
-  List<Storagable> stuff = [];
-  List<Future<void> Function()> _syncronizers = [];
+  Map<String, List<Storagable>> _storage = {};
+  Future<void> Function()? _syncronizer;
 
-  void clear() {
-    this.userName = "";
-    this.stuff.clear();
+  List<Storagable> addStorage(String name) {
+    var list = <Storagable>[];
+    _storage[name] = list;
+    return list;
+  }
+
+  List<Storagable> getStorage(String name) {
+    assert(_storage.containsKey(name), "No such storage");
+    return _storage[name]!;
   }
 
   void addSyncronizer(Future<void> Function() syncronizer) {
-    _syncronizers.add(syncronizer);
+    _syncronizer = syncronizer;
   }
 
   Future<void> sync() async {
-    for (Future<void> Function() syncronizer in _syncronizers) {
-      await syncronizer();
+    assert(_syncronizer != null, "No syncronizer provided");
+    await _syncronizer!();
+  }
+
+  void clear() {
+    userName = "";
+    for (List<Storagable> s in _storage.values) {
+      s.clear();
     }
+    _storage.clear();
   }
 }
 

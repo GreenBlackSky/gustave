@@ -27,7 +27,7 @@ class _NotesListViewState extends State<NotesListView> {
 }
 
 class NotesList extends ElementsList {
-  final List<dynamic> elements = storage.stuff;
+  final List<dynamic> elements = storage.getStorage("notes");
 
   @override
   Widget buildListElement(BuildContext context, var note, int index) {

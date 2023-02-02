@@ -4,7 +4,7 @@ import 'gustave/network/server_caller.dart';
 import 'gustave/widgets/confirmation_dialog.dart';
 import 'gustave/widgets/common_widget.dart';
 
-import 'notes_logic.dart';
+import 'notes_network.dart';
 import 'note.dart';
 
 abstract class NoteDialog {
@@ -34,7 +34,7 @@ abstract class NoteDialog {
                   child: Text(buttonText),
                   onPressed: () {
                     ServerCallerWrapper(action, "/main", "/main")
-                        .callServer(context, [controller.value.text, id]);
+                        .callServer(context, [id, controller.value.text]);
                   },
                 ),
                 TextButton(

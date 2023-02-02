@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'app_data.dart';
 import 'network/server_caller.dart';
 import 'widgets/common_widget.dart';
-import 'user_network_logic.dart';
+import 'user_network.dart';
 
 class LogInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(leading: new Container(), title: Text("COIN")),
+        appBar: AppBar(leading: new Container(), title: Text(appData.appName)),
         backgroundColor: Colors.grey[200],
         body: CommonForm(LogInForm()));
   }
