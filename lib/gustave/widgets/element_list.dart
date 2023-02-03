@@ -27,20 +27,25 @@ class _ElementsListState extends State<ElementsList> {
   }
 }
 
-Widget buildListElementBase(Widget text, Function? onEdit, Function? onRemove,
-    {Color color = Colors.blue}) {
+Widget buildListElementBase(
+  Widget text,
+  void Function()? onEdit,
+  void Function()? onRemove, {
+  Color color = Colors.blue,
+}) {
   List<Widget> actions = [];
   if (onEdit != null) {
     actions.add(IconButton(
-        icon: Icon(Icons.edit),
-        color: Colors.black,
-        onPressed: onEdit as void Function()?));
+      icon: Icon(Icons.edit),
+      color: Colors.black,
+      onPressed: onEdit,
+    ));
   }
   if (onRemove != null) {
     actions.add(IconButton(
       icon: Icon(Icons.delete),
       color: Colors.black,
-      onPressed: onRemove as void Function()?,
+      onPressed: onRemove,
     ));
   }
   return Container(

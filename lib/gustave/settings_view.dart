@@ -11,7 +11,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CommonView(
       "Settings",
-      CommonForm(SettingsWidget()),
+      CommonForm(context, SettingsWidget()),
     );
   }
 }

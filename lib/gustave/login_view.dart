@@ -11,7 +11,7 @@ class LogInScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(leading: new Container(), title: Text(appData.appName)),
         backgroundColor: Colors.grey[200],
-        body: CommonForm(LogInForm()));
+        body: CommonForm(context, LogInForm()));
   }
 }
 

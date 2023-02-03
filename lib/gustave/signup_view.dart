@@ -13,7 +13,7 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(leading: new Container(), title: Text(appData.appName)),
         backgroundColor: Colors.grey[200],
-        body: CommonForm(SignUpForm()));
+        body: CommonForm(context, SignUpForm()));
   }
 }
 

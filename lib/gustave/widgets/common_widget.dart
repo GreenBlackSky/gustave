@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 
 class CommonForm extends Center {
-  CommonForm(Widget widget)
-      : super(child: FractionallySizedBox(widthFactor: 0.3, child: widget));
+  CommonForm(BuildContext context, Widget widget)
+      : super(
+            child: FractionallySizedBox(
+                widthFactor: getWidthFactor(context), child: widget));
+
+  static double getWidthFactor(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    const maxWidth = 1200;
+    const minWidth = 600;
+    if (screenWidth > maxWidth) {
+      return 0.3;
+    } else if (screenWidth < minWidth) {
+      return 0.9;
+    } else {
+      return 0.3 + (1200 - screenWidth) / 1000;
+    }
+  }
 }
 
 class Button extends Padding {

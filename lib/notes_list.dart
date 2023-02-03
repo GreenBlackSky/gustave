@@ -17,7 +17,7 @@ class _NotesListViewState extends State<NotesListView> {
   Widget build(BuildContext context) {
     return CommonView(
       "Notes",
-      CommonForm(NotesList()),
+      CommonForm(context, NotesList()),
       floatingActionButton: FloatingActionButton(
           onPressed: AddNoteDialog(context).show,
           child: Icon(Icons.add),
