@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 
-import '../network/session.dart';
-import '../storage.dart';
+import '../network/server_caller.dart';
 import '../app_data.dart';
+import '../user_network.dart';
 import 'confirmation_dialog.dart';
 
 class LogOutDialog extends ConfirmationDialogue {
   final String title = "Are you sure, you want to log out?";
   final String buttonText = "Log out";
+  final ServerCallerWrapper _serverCaller = ServerCallerWrapper(
+    logout,
+    '/login',
+    '/login',
+  );
 
   LogOutDialog(BuildContext context) : super(context);
 
   @override
   void onPressed() {
-    // TODO use animation
-    session.post('logout').catchError((_) {});
-    session.clearSession();
-    storage.clear();
-    Navigator.of(context).pushNamed('/login');
+    _serverCaller.callServer(context, []);
   }
 }
 

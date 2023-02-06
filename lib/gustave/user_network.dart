@@ -74,3 +74,9 @@ Future<void> editUser(List<dynamic> args) async {
   await requestEditUser(name, password, newPassword);
   await syncUser();
 }
+
+Future<void> logout(List<dynamic> args) async {
+  await session.post('logout');
+  session.clearSession();
+  storage.clear();
+}
